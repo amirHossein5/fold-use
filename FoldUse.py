@@ -7,11 +7,12 @@ class FoldUseCommand(sublime_plugin.TextCommand):
         if isNotPhpFile(self.view):
             return
 
-        self.view.fold(self.get_use_statements_region())
+        self.view.fold(self.get_imports_use_region())
 
         if (config('fold_traits_use')):
             self.view.fold(self.get_traits_use_region())
 
+    def get_imports_use_region(self):
         regions = self.view.find_all("^use .*;$", 0)
 
         if len(regions) == 0:
