@@ -37,7 +37,7 @@ def isNotPhpFile(view):
 
 
 def shift_region(region, times):
-    return sublime.Region(region.a + 4, region.b)
+    return sublime.Region(region.a + times, region.b)
 
 
 def regions_to_region(regions):
