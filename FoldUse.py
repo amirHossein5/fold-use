@@ -9,7 +9,7 @@ class FoldUseCommand(sublime_plugin.TextCommand):
 
         self.view.fold(self.get_imports_use_region())
 
-        if (config('fold_traits_use')):
+        if config("fold_traits_use"):
             self.view.fold(self.get_traits_use_region())
 
     def get_imports_use_region(self):
@@ -26,7 +26,7 @@ class FoldUseCommand(sublime_plugin.TextCommand):
         if len(regions) == 0:
             return []
 
-        return shift_region(regions_to_region(regions), len('    use '))
+        return shift_region(regions_to_region(regions), len("    use "))
 
 
 class FoldUseEventListener(sublime_plugin.EventListener):
