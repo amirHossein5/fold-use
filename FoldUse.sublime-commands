@@ -1,0 +1,11 @@
+[
+    {
+        "caption": "FoldUse: Settings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/fold-use/FoldUse.sublime-settings",
+            "user_file": "${packages}/User/FoldUse.sublime-settings",
+            "default": "{\n\t$0\n}\n"
+        }
+    }
+]

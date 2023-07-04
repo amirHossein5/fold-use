@@ -9,13 +9,23 @@ class FoldUseCommand(sublime_plugin.TextCommand):
 
         self.view.fold(self.get_use_statements_region())
 
-    def get_use_statements_region(self):
+        if (config('fold_traits_use')):
+            self.view.fold(self.get_traits_use_region())
+
         regions = self.view.find_all("^use .*;$", 0)
 
         if len(regions) == 0:
             return []
 
         return shift_region(regions_to_region(regions), len("use "))
+
+    def get_traits_use_region(self):
+        regions = self.view.find_all("^(\t|\s{4})use .*;$", 0)
+
+        if len(regions) == 0:
+            return []
+
+        return shift_region(regions_to_region(regions), len('    use '))
 
 
 class FoldUseEventListener(sublime_plugin.EventListener):
@@ -45,3 +55,7 @@ def regions_to_region(regions):
         return False
 
     return regions[0].cover(regions[-1])
+
+
+def config(key):
+    return sublime.load_settings("FoldUse.sublime-settings").get(key)
