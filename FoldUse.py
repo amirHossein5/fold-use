@@ -42,6 +42,12 @@ class FoldUseEventListener(sublime_plugin.EventListener):
 
         view.run_command("fold_use")
 
+    def on_reload(self, view):
+        if isNotPhpFile(view):
+            return
+
+        view.run_command("fold_use")
+
 
 def isNotPhpFile(view):
     return "PHP" != view.syntax().name
